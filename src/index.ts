@@ -1,22 +1,19 @@
 import ArrayStack from './ArrayStack'
 
-function decimal_2_binary(decimal: number): string {
-  const stack = new ArrayStack<number>()
+export function is_valid(str: string) {
+  const quotes = str.split('')
+  const stack = new ArrayStack<string>()
 
-  let res: number
-  while (decimal > 0) {
-    res = decimal % 2
-
-    stack.push(res)
-
-    decimal = Math.floor(decimal / 2)
+  for (const char of quotes) {
+    if (char === '(')
+      stack.push(')')
+    else if (char === '{')
+      stack.push('}')
+    else if (char === '[')
+      stack.push(']')
+    else if (stack.pop() !== char)
+      return false
   }
 
-  let binary = ''
-  while (!stack.isEmpty())
-    binary += stack.pop()
-
-  return binary
+  return true
 }
-
-console.log(decimal_2_binary(2))

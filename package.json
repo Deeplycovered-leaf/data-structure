@@ -8,6 +8,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "nodemon src/index.ts",
+    "test": "vitest",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -15,7 +16,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.0",
-    "eslint": "^8.48.0"
+    "eslint": "^8.48.0",
+    "vitest": "^0.34.5"
   },
   "eslintConfig": {
     "rules": {
