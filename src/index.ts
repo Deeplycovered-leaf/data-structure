@@ -1,38 +1,22 @@
-class ArrayStack<T = any> {
-  #data: T[] = []
+import ArrayStack from './ArrayStack'
 
-  constructor(element: T) {
-    this.#data.push(element)
+function decimal_2_binary(decimal: number): string {
+  const stack = new ArrayStack<number>()
+
+  let res: number
+  while (decimal > 0) {
+    res = decimal % 2
+
+    stack.push(res)
+
+    decimal = Math.floor(decimal / 2)
   }
 
-  push(element: T) {
-    this.#data.push(element)
-  }
+  let binary = ''
+  while (!stack.isEmpty())
+    binary += stack.pop()
 
-  pop() {
-    return this.#data.pop()
-  }
-
-  peek() {
-    return this.#data[this.#data.length - 1]
-  }
-
-  isEmpty() {
-    return this.#data.length === 0
-  }
-
-  size() {
-    return this.#data.length
-  }
+  return binary
 }
 
-const array_stack = new ArrayStack('a')
-array_stack.push('b')
-array_stack.push('c')
-
-console.log('array_stack =>', array_stack)
-console.log('array_stack.peek() =>', array_stack.peek())
-console.log('array_stack.pop() =>', array_stack.pop())
-
-console.log('array_stack.isEmpty() =>', array_stack.isEmpty())
-console.log('array_stack.size() =>', array_stack.size())
+console.log(decimal_2_binary(2))
