@@ -1,15 +1,30 @@
+import { expect, it } from 'vitest'
 import ArrayQueue from './ArrayQueue'
 
-const queue = new ArrayQueue<string>()
+function hot_potato(names: string[], num: number): string {
+  const queue = new ArrayQueue<string>()
 
-queue.enqueue('a')
-queue.enqueue('b')
-queue.enqueue('c')
+  for (const item of names)
+    queue.enqueue(item)
 
-console.log('queue.dequeue() =>', queue.dequeue())
-console.log('queue.dequeue() =>', queue.dequeue())
+  let counter = 0
+  while (queue.size > 1) {
+    const first = queue.dequeue()
 
-console.log('queue.peek() =>', queue.peek())
+    counter++
+    if (counter === num) {
+      counter = 0
+      continue
+    }
 
-console.log('queue.is_empty() =>', queue.is_empty())
-console.log('queue.size =>', queue.size)
+    queue.enqueue(first!)
+  }
+
+  return queue.dequeue()!
+}
+
+if (import.meta.vitest) {
+  it('should be return zi when input ()', () => {
+    expect(hot_potato(['zi', 'ze', 'zb', 'zd'], 3)).toBe('zi')
+  })
+}
