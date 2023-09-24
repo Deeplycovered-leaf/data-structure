@@ -1,19 +1,15 @@
-import ArrayStack from './ArrayStack'
+import ArrayQueue from './ArrayQueue'
 
-export function is_valid(str: string) {
-  const quotes = str.split('')
-  const stack = new ArrayStack<string>()
+const queue = new ArrayQueue<string>()
 
-  for (const char of quotes) {
-    if (char === '(')
-      stack.push(')')
-    else if (char === '{')
-      stack.push('}')
-    else if (char === '[')
-      stack.push(']')
-    else if (stack.pop() !== char)
-      return false
-  }
+queue.enqueue('a')
+queue.enqueue('b')
+queue.enqueue('c')
 
-  return true
-}
+console.log('queue.dequeue() =>', queue.dequeue())
+console.log('queue.dequeue() =>', queue.dequeue())
+
+console.log('queue.peek() =>', queue.peek())
+
+console.log('queue.is_empty() =>', queue.is_empty())
+console.log('queue.size =>', queue.size)

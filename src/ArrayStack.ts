@@ -1,4 +1,6 @@
-export default class ArrayStack<T = any> {
+import type { Stack } from './types'
+
+export default class ArrayStack<T = any> implements Stack<T> {
   #data: T[] = []
 
   push(element: T) {
@@ -13,11 +15,11 @@ export default class ArrayStack<T = any> {
     return this.#data[this.#data.length - 1]
   }
 
-  isEmpty() {
+  is_empty() {
     return this.#data.length === 0
   }
 
-  size() {
+  get size() {
     return this.#data.length
   }
 }
@@ -28,5 +30,5 @@ array_stack.push('c')
 console.log('array_stack =>', array_stack)
 console.log('array_stack.peek() =>', array_stack.peek())
 console.log('array_stack.pop() =>', array_stack.pop())
-console.log('array_stack.isEmpty() =>', array_stack.isEmpty())
-console.log('array_stack.size() =>', array_stack.size())
+console.log('array_stack.isEmpty() =>', array_stack.is_empty())
+console.log('array_stack.size() =>', array_stack.size)
