@@ -8,7 +8,7 @@
   "keywords": [],
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --es-module-specifier-resolution=node src/index.ts",
+    "start": "nodemon --experimental-specifier-resolution=node --esm src/index.ts",
     "test": "vitest",
     "lint": "eslint ."
   },

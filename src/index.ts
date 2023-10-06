@@ -1,30 +1,30 @@
 import { expect, it } from 'vitest'
-import ArrayQueue from './ArrayQueue'
+import { LinkedList } from './LinkedList'
 
-function hot_potato(names: string[], num: number): string {
-  const queue = new ArrayQueue<string>()
+const linked_list = new LinkedList<number>()
+linked_list.append(1)
+linked_list.append(2)
+linked_list.append(3)
 
-  for (const item of names)
-    queue.enqueue(item)
+linked_list.insert(1, 0)
+linked_list.insert(0, 4)
+linked_list.traverse()
 
-  let counter = 0
-  while (queue.size > 1) {
-    const first = queue.dequeue()
+linked_list.remove(0)
+linked_list.traverse()
 
-    counter++
-    if (counter === num) {
-      counter = 0
-      continue
-    }
+linked_list.remove(2)
+linked_list.traverse()
 
-    queue.enqueue(first!)
-  }
+console.log('linked_list.get(0) =>', linked_list.get(0))
+console.log('linked_list.get(2) =>', linked_list.get(2))
 
-  return queue.dequeue()!
-}
+console.log('linked_list.index_of(0) =>', linked_list.index_of(0))
 
-if (import.meta.vitest) {
-  it('should be return zi when input ()', () => {
-    expect(hot_potato(['zi', 'ze', 'zb', 'zd'], 3)).toBe('zi')
-  })
-}
+linked_list.remove_by_value(0)
+linked_list.traverse()
+// if (import.meta.vitest) {
+//   it('should be insert 0 into before 2', () => {
+//     expect(hot_potato(['zi', 'ze', 'zb', 'zd'], 3)).toBe('zi')
+//   })
+// }
